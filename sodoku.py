@@ -49,25 +49,15 @@ def valid_placement(row,col,value,board):
     return True
 
 
-def solve(row, col, board):
-
-    for number in range(1,10):
-
-        if valid_placement(row, col, number,board):
-            board[row][col] = number
-            break
-
-    return board
-
 def solve_board(board):
 
-    for row in range(len(board)):
-        for col in range(len(board[row])):
+    for row in range(9):
+        for col in range(9):
             if board[row][col] == 0:
-                board = solve(row,col,board)
-    for row in board:
-        print(row)
-
+                for n in range(1,10):
+                    if valid_placement(row,col,n,board):
+                        board[row][col] = n
+                        solve_board(board)
 solve_board(board)
         
 
